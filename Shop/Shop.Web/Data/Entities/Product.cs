@@ -28,5 +28,15 @@ namespace Shop.Web.Data.Entities
         public double Stock { get; set; }
 
         public User user { get; set; }
+        public string ImageFullPath {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImageUrl))
+                {
+                    return null;
+                }
+                return $"https://shopzulu.azurewebsites.net{this.ImageUrl.Substring(1)}";
+            }
+        }
     }
 }
