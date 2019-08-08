@@ -66,18 +66,20 @@ namespace Shop.Web.Controllers
 
                 if (view.ImageFile != null && view.ImageFile.Length > 0)
                 {
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
                     //ruta para guardar en servidor
                     path = Path.Combine(
                         Directory.GetCurrentDirectory(),
                         "wwwroot\\images\\Products",
-                        view.ImageFile.FileName);
+                       file);
 
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         await view.ImageFile.CopyToAsync(stream);
                     }
                     //ruta mas nombre del archivo
-                    path = $"~/images/Products/{view.ImageFile.FileName}";
+                    path = $"~/images/Products/{file}";
                 }
                 var product = this.ToProduct(view, path);
                 // TODO: Pending to change to: this.User.Identity.Name
