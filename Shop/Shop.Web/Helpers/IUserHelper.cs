@@ -18,6 +18,8 @@ namespace Shop.Web.Helpers
 
         Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword);
 
+        Task<SignInResult> ValidatePasswordAsync(User user, string password);
+
 
     }
 }
