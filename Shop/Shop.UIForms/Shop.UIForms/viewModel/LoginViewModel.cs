@@ -3,7 +3,6 @@ namespace Shop.UIForms.viewModel
 {
     using GalaSoft.MvvmLight.Command;
     using Shop.UIForms.Views;
-    using System;
     using System.Windows.Input;
     using Xamarin.Forms;
 
