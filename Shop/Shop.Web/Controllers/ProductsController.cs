@@ -5,6 +5,7 @@ namespace Shop.Web.Controllers
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Shop.Web.Data;
@@ -12,6 +13,7 @@ namespace Shop.Web.Controllers
     using Shop.Web.Helpers;
     using Shop.Web.Models;
 
+    [Authorize]
     public class ProductsController : Controller
     {
         //private readonly IRepository repository;
@@ -83,7 +85,7 @@ namespace Shop.Web.Controllers
                 }
                 var product = this.ToProduct(view, path);
                 // TODO: Pending to change to: this.User.Identity.Name
-                product.user = await this.userHelper.GetUserByEmailAsync("gacosta.com.do@gmail.com");
+                product.user = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                 await this.productRepository.CreateAsync(product);
                 return RedirectToAction(nameof(Index));
             }
